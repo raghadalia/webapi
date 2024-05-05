@@ -76,3 +76,7 @@ C:\Users\Hp\source\repos\ToDoApi\obj\Debug\net6.0\refint\ToDoApi.dll
 C:\Users\Hp\source\repos\ToDoApi\obj\Debug\net6.0\ToDoApi.pdb
 C:\Users\Hp\source\repos\ToDoApi\obj\Debug\net6.0\ToDoApi.genruntimeconfig.cache
 C:\Users\Hp\source\repos\ToDoApi\obj\Debug\net6.0\ref\ToDoApi.dll
+C:\Users\Hp\source\repos\ToDoApi\obj\Debug\net6.0\ToDoApi.sourcelink.json
+C:\Users\Hp\source\repos\ToDoApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Hp\source\repos\ToDoApi\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Hp\source\repos\ToDoApi\bin\Debug\net6.0\Newtonsoft.Json.dll

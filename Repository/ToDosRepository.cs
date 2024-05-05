@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// ToDosRepository.cs
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ToDoApi.Data;
-using ToDoApi.interfaces;
+using ToDoApi.Interfaces;
 using ToDoApi.Models;
 
-namespace ToDoApi.Repository
+namespace ToDoApi.Services
 {
     public class ToDosRepository : IToDosRepository
     {
@@ -14,51 +18,38 @@ namespace ToDoApi.Repository
             _context = context;
         }
 
-        public async Task<IEnumerable<ToDos>> GetAllAsync(string userId )
+        public async Task<List<ToDos>> GetAllAsync(string userId)
         {
-            if (userId != null)
-            {
-                return await _context.ToDos.Where(todo => todo.User.Id == userId).ToListAsync();
-            }
-            else
-            {
-                return await _context.ToDos.Include(t => t.User).ToListAsync();
-            }
+            return await _context.ToDos.Where(t => t.UserId == userId).ToListAsync();
         }
 
         public async Task<ToDos> GetByIdAsync(int id)
         {
-            return await _context.ToDos.Include(t => t.User).FirstOrDefaultAsync(m => m.Id == id);
+            return await _context.ToDos.FindAsync(id);
         }
 
-        public async Task CreateAsync(ToDos toDos)
+        public async Task CreateAsync(ToDos todo)
         {
-            _context.ToDos.Add(toDos);
+            _context.ToDos.Add(todo);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(ToDos toDos)
+        public async Task UpdateAsync(ToDos todo)
         {
-            _context.ToDos.Update(toDos);
+            _context.Entry(todo).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var toDos = await _context.ToDos.FindAsync(id);
-            if (toDos != null)
-            {
-                _context.ToDos.Remove(toDos);
-                await _context.SaveChangesAsync();
-            }
+            var todo = await _context.ToDos.FindAsync(id);
+            _context.ToDos.Remove(todo);
+            await _context.SaveChangesAsync();
         }
 
         public bool Exists(int id)
         {
             return _context.ToDos.Any(e => e.Id == id);
         }
-
-       
     }
-
 }

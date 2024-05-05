@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDoApi.Data;
 
@@ -11,9 +12,10 @@ using ToDoApi.Data;
 namespace ToDoApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240505115854_editModel")]
+    partial class editModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,15 +53,15 @@ namespace ToDoApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bcd94352-1422-40e5-a2fc-ed94fc0e21ca",
-                            ConcurrencyStamp = "5ae2677a-9498-47f3-9b8c-4726d6e51311",
+                            Id = "b1131eb9-e50d-42b3-ba4b-be454ae14d5a",
+                            ConcurrencyStamp = "85be6fbd-c5e5-4a1d-9b6b-2cc9091f939d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "821cf5d3-7c4d-4077-aefe-302c30d823d7",
-                            ConcurrencyStamp = "2201e4c6-8dc3-4193-9836-f4e62e03d24b",
+                            Id = "451bb74f-4123-43d5-bf4b-a4e044be1e18",
+                            ConcurrencyStamp = "aeee6c7f-8a1c-4051-95b3-7fe38f5d5ad6",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -256,7 +258,6 @@ namespace ToDoApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -321,9 +322,7 @@ namespace ToDoApi.Migrations
                 {
                     b.HasOne("ToDoApi.Models.ApplicationUser", "User")
                         .WithMany("Tasks")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

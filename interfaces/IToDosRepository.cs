@@ -1,15 +1,14 @@
 ﻿using ToDoApi.Models;
 
-namespace ToDoApi.interfaces
+namespace ToDoApi.Interfaces
 {
-   
-        public interface IToDosRepository { 
-        Task<IEnumerable<ToDos>> GetAllAsync(string userId);
+    public interface IToDosRepository
+    {
+        Task<List<ToDos>> GetAllAsync(string userId);
         Task<ToDos> GetByIdAsync(int id);
-        Task CreateAsync(ToDos toDos);
-        Task UpdateAsync(ToDos toDos);
+        Task CreateAsync(ToDos todo);
+        Task UpdateAsync(ToDos todo);
         Task DeleteAsync(int id);
         bool Exists(int id);
-        }
-    
+    }
 }
